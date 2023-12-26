@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: story-vol
-          image: akash290698/kub-data-vol:v1.1
+          image: akash290698/kub-data-vol:v1.1.2
           volumeMounts:
             - mountPath: /app/story
               name: emptyDir-volume
