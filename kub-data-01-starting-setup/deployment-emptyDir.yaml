@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: story-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: story-label
+  template:
+    metadata:
+      labels:
+        app: story-label
+    spec:
+      containers:
+        - name: story-vol
+          image: akash290698/kub-data-vol:v1.1
+          volumeMounts:
+            - mountPath: /app/story
+              name: emptyDir-volume
+      volumes:
+        - name: emptyDir-volume
+          emptyDir: {}
