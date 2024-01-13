@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: story-deploy
+  name: story-deployment
 spec:
   replicas: 1
   selector:
@@ -13,11 +13,11 @@ spec:
         app: story-label
     spec:
       containers:
-        - name: story-vol
-          image: akash290698/kub-data-vol:v1.1.2
+        - name: story-volume
+          image: akash290698/kub-data-vol:v1.2
           volumeMounts:
             - mountPath: /app/story
-              name: emptyDir-volume
+              name: empty-volume
       volumes:
-        - name: emptyDir-volume
+        - name: empty-volume
           emptyDir: {}

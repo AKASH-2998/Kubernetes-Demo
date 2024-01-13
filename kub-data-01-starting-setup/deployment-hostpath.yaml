@@ -1,31 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: story-deployment
+  name: story-host
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: story-node
+      app: host
   template:
     metadata:
       labels:
-        app: story-node
+        app: host
     spec:
       containers:
-        - name: story-dep
-          image: akash290698/kub-data-vol:v1.1.2
-          # volumeMounts:
-          #   - mountPath: /app/story
-          #     name: story-volume
+        - name: story-host-volume
+          image: akash290698/kub-data-vol:v1.2
           volumeMounts:
             - mountPath: /app/story
-              name: story-host
-      # volumes:
-      #   - name: story-volume
-      #     emptyDir: {}
+              name: host-path-volume
       volumes:
-        - name: story-host
+        - name: host-path-volume
           hostPath:
             path: /data
             type: DirectoryOrCreate
