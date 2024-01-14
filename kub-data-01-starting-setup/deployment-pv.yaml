@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pv-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pv-node
+  template:
+    metadata:
+      labels:
+        app: pv-node
+    spec:
+      containers:
+        - name: pv-deploy-node
+          image: akash290698/kub-data-vol:v1.2
+          volumeMounts:
+            - mountPath: /app/story
+              name: host-path-volume
+      volumes:
+        - name: host-path-volume
+          persistentVolumeClaim:
+            claimName: host-pvc   # PVC to deployment connection establishment
